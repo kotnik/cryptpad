@@ -1,0 +1,41 @@
+name: cryptpad
+type: nodejs:12
+
+variables:
+  env:
+    FRESH: 1
+    USE_SSL: "false"
+
+web:
+  commands:
+    start: "node ./server.js"
+
+build:
+  flavor: none
+
+hooks:
+  build: |
+    npm install
+    npm install platformsh-config@2.3.1
+    bower install
+    cp config.platformsh.js config/config.js
+
+dependencies:
+  nodejs:
+    bower: "^1.8.8"
+
+mounts:
+   datastore:
+       source: local
+       source_path: datastore
+   data:
+       source: local
+       source_path: data
+   block:
+       source: local
+       source_path: block
+   blob:
+       source: local
+       source_path: blob
+
+disk: 512

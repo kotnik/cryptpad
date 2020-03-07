@@ -1,0 +1,9 @@
+"https://{default}/":
+  type: upstream
+  upstream: "cryptpad:http"
+
+"https://{default}/cryptpad_websocket":
+  type: upstream
+  upstream: "cryptpad:http"
+  cache:
+    enabled: false
